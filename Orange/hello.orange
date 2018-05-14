@@ -1,0 +1,11 @@
+apple := 200;
+banana := 100;#ohoh123
+if(apple<banana){
+	orange := apple*banana;
+	banana := 12*apple - 32;
+}
+i := 10;
+while(i>0){
+	write i;
+	i := i - 1;
+}
