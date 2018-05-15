@@ -89,29 +89,33 @@
  37:    LDC  0,0(0) 	load const
 * <- Const
  38:     LD  1,0(6) 	op: load left
-* BUG: Unknown operator
+ 39:    SUB  0,1,0 	op >
+ 40:    JLT  0,2(7) 	br if false
+ 41:    LDC  0,1(0) 	true case
+ 42:    LDA  7,1(7) 	unconditional jmp
+ 43:    LDC  0,0(0) 	false case
 * <- Op
 * while: jump to end belongs here
 * -> Id
- 40:     LD  0,3(5) 	load id value
+ 45:     LD  0,3(5) 	load id value
 * <- Id
- 41:    OUT  0,0,0 	write ac
+ 46:    OUT  0,0,0 	write ac
 * -> assign
 * -> Op
 * -> Id
- 42:     LD  0,3(5) 	load id value
+ 47:     LD  0,3(5) 	load id value
 * <- Id
- 43:     ST  0,0(6) 	op: push left
+ 48:     ST  0,0(6) 	op: push left
 * -> Const
- 44:    LDC  0,1(0) 	load const
+ 49:    LDC  0,1(0) 	load const
 * <- Const
- 45:     LD  1,0(6) 	op: load left
- 46:    SUB  0,1,0 	op -
+ 50:     LD  1,0(6) 	op: load left
+ 51:    SUB  0,1,0 	op -
 * <- Op
- 47:     ST  0,3(5) 	assign: store value
+ 52:     ST  0,3(5) 	assign: store value
 * <- assign
- 48:    LDA  7,-14(7) 	jmp back to loop
- 39:    JEQ  0,8(7) 	while: jmp to end
+ 53:    LDA  7,-19(7) 	jmp back to loop
+ 44:    JEQ  0,8(7) 	while: jmp to end
 * <- while
 * End of execution.
- 49:   HALT  0,0,0 	
+ 54:   HALT  0,0,0 	

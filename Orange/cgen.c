@@ -130,6 +130,13 @@ static void genExp(Coder* coder,TreeNode * tree)
 			emitRM(coder,"LDA", pc, 1, pc, "unconditional jmp");
 			emitRM(coder,"LDC", ac, 1, ac, "true case");
 			break;
+		case GT:
+			emitRO(coder, "SUB", ac, ac1, ac, "op >");
+			emitRM(coder, "JLT", ac, 2, pc, "br if false");
+			emitRM(coder, "LDC", ac, 1, ac, "true case");
+			emitRM(coder, "LDA", pc, 1, pc, "unconditional jmp");
+			emitRM(coder, "LDC", ac, 0, ac, "false case");
+			break;
 		case EQ:
 			emitRO(coder, "SUB", ac, ac1, ac, "op ==");
 			emitRM(coder, "JEQ", ac, 2, pc, "br if true");
