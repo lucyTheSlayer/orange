@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "lexer.h"
 #include "parser.h"
+#include "symtab.h"
+#include "analyze.h"
 #include "util.h"
 int main() {
 	FILE* source = fopen("hello.orange", "r");
@@ -21,6 +23,16 @@ int main() {
 	parser_init(parser, lexer);
 	TreeNode* syntaxTree = parser_parse(parser);
 	printTree(syntaxTree);
+
+	Symtab* symtab = (Symtab*)malloc(sizeof(Symtab));
+	st_init(symtab);
+	Analyzer* analyzer = (Analyzer*)malloc(sizeof(Analyzer));
+	analyzer_init(analyzer, symtab);
+	printf("\n Building Symbol Table... \n");
+	buildSymtab(analyzer, syntaxTree);
+	printf("\n Checking Types...\n");
+	typeCheck(analyzer, syntaxTree);
+	printf("\n Type Checking Finished");
 
 	char c;
 	scanf_s("%c", &c);
