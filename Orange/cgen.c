@@ -48,6 +48,9 @@ static void genStmt(Coder* coder, TreeNode* tree) {
 		emitRM_Abs(coder, "LDA", pc, savedLoc1, "jmp back to loop");
 		emitBackup(coder,savedLoc2);
 		emitRM_Abs(coder,"JEQ", ac, currentLoc, "while: jmp to end");
+		emitRestore(coder);
+		if (coder->traceCode)  emitComment(coder, "<- while");
+		break; /* while_k */
 	case AssignK:
 		if (coder->traceCode) emitComment(coder, "-> assign");
 		/* generate code for rhs */

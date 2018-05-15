@@ -1,0 +1,117 @@
+* TINY Compilation to TM Code
+* File: hello.orangebc
+* Standard prelude:
+  0:     LD  6,0(0) 	load maxaddress from location 0
+  1:     ST  0,0(0) 	clear location 0
+* End of standard prelude.
+* -> assign
+* -> Const
+  2:    LDC  0,200(0) 	load const
+* <- Const
+  3:     ST  0,0(5) 	assign: store value
+* <- assign
+* -> assign
+* -> Const
+  4:    LDC  0,100(0) 	load const
+* <- Const
+  5:     ST  0,1(5) 	assign: store value
+* <- assign
+* -> if
+* -> Op
+* -> Id
+  6:     LD  0,0(5) 	load id value
+* <- Id
+  7:     ST  0,0(6) 	op: push left
+* -> Id
+  8:     LD  0,1(5) 	load id value
+* <- Id
+  9:     LD  1,0(6) 	op: load left
+ 10:    SUB  0,1,0 	op <
+ 11:    JLT  0,2(7) 	br if true
+ 12:    LDC  0,0(0) 	false case
+ 13:    LDA  7,1(7) 	unconditional jmp
+ 14:    LDC  0,1(0) 	true case
+* <- Op
+* if: jump to else belongs here
+* -> assign
+* -> Op
+* -> Id
+ 16:     LD  0,0(5) 	load id value
+* <- Id
+ 17:     ST  0,0(6) 	op: push left
+* -> Id
+ 18:     LD  0,1(5) 	load id value
+* <- Id
+ 19:     LD  1,0(6) 	op: load left
+ 20:    MUL  0,1,0 	op *
+* <- Op
+ 21:     ST  0,2(5) 	assign: store value
+* <- assign
+* -> assign
+* -> Op
+* -> Op
+* -> Const
+ 22:    LDC  0,12(0) 	load const
+* <- Const
+ 23:     ST  0,0(6) 	op: push left
+* -> Id
+ 24:     LD  0,0(5) 	load id value
+* <- Id
+ 25:     LD  1,0(6) 	op: load left
+ 26:    MUL  0,1,0 	op *
+* <- Op
+ 27:     ST  0,0(6) 	op: push left
+* -> Const
+ 28:    LDC  0,32(0) 	load const
+* <- Const
+ 29:     LD  1,0(6) 	op: load left
+ 30:    SUB  0,1,0 	op -
+* <- Op
+ 31:     ST  0,1(5) 	assign: store value
+* <- assign
+* if: jump to end belongs here
+ 15:    JEQ  0,17(7) 	if: jmp to else
+ 32:    LDA  7,0(7) 	jmp to end
+* <- if
+* -> assign
+* -> Const
+ 33:    LDC  0,10(0) 	load const
+* <- Const
+ 34:     ST  0,3(5) 	assign: store value
+* <- assign
+* -> while
+* -> Op
+* -> Id
+ 35:     LD  0,3(5) 	load id value
+* <- Id
+ 36:     ST  0,0(6) 	op: push left
+* -> Const
+ 37:    LDC  0,0(0) 	load const
+* <- Const
+ 38:     LD  1,0(6) 	op: load left
+* BUG: Unknown operator
+* <- Op
+* while: jump to end belongs here
+* -> Id
+ 40:     LD  0,3(5) 	load id value
+* <- Id
+ 41:    OUT  0,0,0 	write ac
+* -> assign
+* -> Op
+* -> Id
+ 42:     LD  0,3(5) 	load id value
+* <- Id
+ 43:     ST  0,0(6) 	op: push left
+* -> Const
+ 44:    LDC  0,1(0) 	load const
+* <- Const
+ 45:     LD  1,0(6) 	op: load left
+ 46:    SUB  0,1,0 	op -
+* <- Op
+ 47:     ST  0,3(5) 	assign: store value
+* <- assign
+ 48:    LDA  7,-14(7) 	jmp back to loop
+ 39:    JEQ  0,8(7) 	while: jmp to end
+* <- while
+* End of execution.
+ 49:   HALT  0,0,0 	
