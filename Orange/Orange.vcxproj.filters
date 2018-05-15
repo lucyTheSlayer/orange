@@ -33,6 +33,12 @@
     <ClCompile Include="analyze.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="code.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cgen.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lexer.h">
@@ -51,6 +57,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="analyze.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="code.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cgen.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -140,6 +140,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="analyze.c" />
+    <ClCompile Include="cgen.c" />
+    <ClCompile Include="code.c" />
     <ClCompile Include="lexer.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="parser.c" />
@@ -148,6 +150,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="analyze.h" />
+    <ClInclude Include="cgen.h" />
+    <ClInclude Include="code.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="lexer.h" />
     <ClInclude Include="parser.h" />
