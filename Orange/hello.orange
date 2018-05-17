@@ -1,11 +1,11 @@
-apple := 200;
-banana := 100;#ohoh123
-if(apple<banana){
-	orange := apple*banana;
-	banana := 12*apple - 32;
+#welcom to orange
+#this program computes n! for the input n
+#plz enjoy the fun
+read n;
+result := 1;
+while(n>0){
+	result := result*n;
+	n := n-1 ;
+	#write n;
 }
-i := 10;
-while(i>0){
-	write i;
-	i := i - 1;
-}
+write result;

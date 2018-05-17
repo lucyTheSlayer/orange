@@ -45,7 +45,7 @@ TreeNode* stmt_sequence(Parser* parser) {
 		if (parser->lastToken != RBRACE) {
 			match(parser, SEMI);
 		}
-		if (parser->token == RBRACE) {
+		if (parser->token == RBRACE || parser->token == ENDFILE) {
 			break;
 		}
 		q = statement(parser);

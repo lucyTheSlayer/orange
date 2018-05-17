@@ -311,6 +311,7 @@ STEPRESULT stepTM (void)
   int ok ;
 
   pc = reg[PC_REG] ;
+  //printf("pc : %d \n", pc);
   if ( (pc < 0) || (pc > IADDR_SIZE)  )
       return srIMEM_ERR ;
   reg[PC_REG] = pc + 1 ;

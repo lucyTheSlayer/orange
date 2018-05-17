@@ -47,7 +47,7 @@ static void genStmt(Coder* coder, TreeNode* tree) {
 		currentLoc = emitSkip(coder, 0);
 		emitRM_Abs(coder, "LDA", pc, savedLoc1, "jmp back to loop");
 		emitBackup(coder,savedLoc2);
-		emitRM_Abs(coder,"JEQ", ac, currentLoc, "while: jmp to end");
+		emitRM_Abs(coder,"JEQ", ac, currentLoc+1, "while: jmp to end");
 		emitRestore(coder);
 		if (coder->traceCode)  emitComment(coder, "<- while");
 		break; /* while_k */
@@ -132,10 +132,10 @@ static void genExp(Coder* coder,TreeNode * tree)
 			break;
 		case GT:
 			emitRO(coder, "SUB", ac, ac1, ac, "op >");
-			emitRM(coder, "JLT", ac, 2, pc, "br if false");
-			emitRM(coder, "LDC", ac, 1, ac, "true case");
-			emitRM(coder, "LDA", pc, 1, pc, "unconditional jmp");
+			emitRM(coder, "JGT", ac, 2, pc, "br if true");
 			emitRM(coder, "LDC", ac, 0, ac, "false case");
+			emitRM(coder, "LDA", pc, 1, pc, "unconditional jmp");
+			emitRM(coder, "LDC", ac, 1, ac, "true case");
 			break;
 		case EQ:
 			emitRO(coder, "SUB", ac, ac1, ac, "op ==");
